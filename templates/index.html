@@ -17,7 +17,7 @@
         }
 
         h2 {
-            margin: 0.2rem 0;
+            margin: 0 0;
         }
 
         body {
@@ -30,7 +30,7 @@
         color: var(--text-light);
         transition: background-color 0.3s, color 0.3s;
         font-family: sans-serif;
-        padding: 0.5rem;
+        padding: 2rem;
         text-align: center;
         }
     
@@ -53,10 +53,19 @@
         #output {
         font-size: 1.2rem;
         white-space: pre-line;
-        padding: 0.1rem 0.2rem;
+        padding: 0 0.2rem;
         border-radius: 8px;
         max-width: 90%;
-        margin-top: 0.2rem;
+        margin-top: 0;
+        margin-bottom: 0;
+        }
+        #output_next {
+        font-size: 1.2rem;
+        white-space: pre-line;
+        padding: 0 0.2rem;
+        border-radius: 8px;
+        max-width: 90%;
+        margin-top: 0;
         }
     </style>
 </head>
@@ -64,6 +73,7 @@
   <button id="toggle-btn">🌙 다크 모드</button>
   <h2>6712 도착까지</h2>
   <p id="output">로딩 중...</p>
+  <p id="output_next">로딩 중...</p>
 
   <script>
     // 다크 모드 초기 설정
@@ -96,15 +106,16 @@
     async function fetchData() {
       try {
         // 아침 7시 30분 부터 10시 사이에만 30초마다 서버에 요청
-        const now = new Date();
-        if (now.getHours() < 7 || now.getHours() >= 10) {
-          document.getElementById('output').textContent = '출근시간 아님';
-          return;
-        }
+        // const now = new Date();
+        // if (now.getHours() < 7 || now.getHours() >= 10) {
+        //   document.getElementById('output').textContent = '출근시간 아님';
+        //   return;
+        // }
 
         const res = await fetch('/data');
         const data = await res.json();
-        document.getElementById('output').textContent = `${data.remain_time_min}분`;
+        document.getElementById('output').textContent = data.remain_time_min;
+        document.getElementById('output_next').textContent = data.remain_time_next_min;
       } catch (err) {
         console.error('서버 요청 실패:', err);
       }
@@ -112,7 +123,7 @@
 
     fetchData(); // 최초 실행
     applyTimeBasedMode();
-    setInterval(fetchData, 10000); // 30초마다 실행
+    setInterval(fetchData, 10000); // 10초마다 실행
     setInterval(applyTimeBasedMode, 60 * 1000);
   </script>
 </body>
