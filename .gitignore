@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Test / coverage
+htmlcov/
+.tox/
+.nox/
+coverage.*
+.cache/
+.pytest_cache/
+
+# Logs
+*.log
+
+# MyPy / Pylint
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# pyenv
+.python-version
