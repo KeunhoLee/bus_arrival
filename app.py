@@ -5,6 +5,7 @@ import requests
 from flask import Flask, render_template, jsonify
 
 BUS_NO = os.environ.get("BUS_NO", "6712")
+BUFFER_MIN = 1
 
 app = Flask(__name__)
 
@@ -39,10 +40,10 @@ def data():
                 return jsonify({"remain_time_min": "도착정보 없음",
                                 "remain_time_next_min": ""})
             
-            remaining_time = arrival_info[0]["remainingTime"]/60
+            remaining_time = arrival_info[0]["remainingTime"]/60 - BUFFER_MIN
             print(f"버스 {BUS_NO}의 도착 예상 시간: {math.ceil(remaining_time)} 분")
             if len(arrival_info) > 1:
-                remaining_time_next = arrival_info[1]["remainingTime"]/60
+                remaining_time_next = arrival_info[1]["remainingTime"]/60 - BUFFER_MIN
                 print(f"버스 {BUS_NO}의 다음 도착 예상 시간: {math.ceil(remaining_time_next)} 분")
             break
 
