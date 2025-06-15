@@ -13,6 +13,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/healthcheck')
+def healthcheck():
+    # 헬스 체크 엔드포인트
+    return jsonify({"status": "ok"}), 200
+
 @app.route('/data')
 def data():
     # 매 요청 시 현재 시각을 반환

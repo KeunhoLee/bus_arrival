@@ -105,6 +105,9 @@
       btn.textContent = isDark ? "🌞 라이트 모드" : "🌙 다크 모드";
     });
 
+    function requestFullScreen() {
+        document.documentElement.requestFullscreen();
+    }
     function applyTimeBasedMode() {
         const hour = new Date().getHours();
         const isNight = hour >= 20 || hour < 7;
@@ -137,6 +140,7 @@
       }
     }
 
+    // requestFullScreen(); // 페이지 로드 시 전체 화면 요청
     fetchData(); // 최초 실행
     applyTimeBasedMode();
     setInterval(fetchData, 10000); // 10초마다 실행
