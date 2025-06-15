@@ -49,21 +49,34 @@
         font-size: 0.5rem;
         margin-bottom: 0.2rem;
         }
+
+        #output-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;  /* 간격은 자유롭게 조절 */
+        }
+
+        .divider {
+        font-size: 1.2rem;
+        white-space: pre-line;
+        color: gray;
+        padding: 0 0.2rem;
+        margin-top: 0;
+        }
     
         #output {
         font-size: 1.2rem;
         white-space: pre-line;
         padding: 0 0.2rem;
-        border-radius: 8px;
         max-width: 90%;
         margin-top: 0;
-        margin-bottom: 0;
         }
+
         #output_next {
         font-size: 1.2rem;
         white-space: pre-line;
         padding: 0 0.2rem;
-        border-radius: 8px;
         max-width: 90%;
         margin-top: 0;
         }
@@ -72,8 +85,11 @@
 <body>
   <button id="toggle-btn">🌙 다크 모드</button>
   <h2>6712 도착까지</h2>
-  <p id="output">로딩 중...</p>
-  <p id="output_next">로딩 중...</p>
+  <div id="output-container">
+    <span id="output">로딩 중...</span>
+    <span class="divider"> >> </span>
+    <span id="output_next">로딩 중...</span>
+  </div>
 
   <script>
     // 다크 모드 초기 설정
